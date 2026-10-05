@@ -1,0 +1,38 @@
+待审查文件路径: {{file_path}}
+启用审查维度: {{enabled_categories}}
+
+AST摘要信息:
+{{ast_result}}
+
+Lint工具输出告警:
+{{lint_result}}
+
+待审查源码:
+```python
+{{source_code}}
+
+请结合上面工具信息审查这份Python代码，输出符合schema的JSON数组。
+
+Schema定义：
+[
+  {
+    "file": "文件路径字符串",
+    "line_start": 起始行号(int),
+    "line_end": 结束行号(int),
+    "category": "bug|style|security|performance|readability|design",
+    "severity": "Blocker|Major|Minor|Info",
+    "title": "简短问题标题",
+    "evidence": "证据，代码片段或lint/ast工具返回信息",
+    "suggestion": "修复建议，最好给出示例代码",
+    "confidence": 0~1浮点数置信度
+  }
+]
+
+
+⚠️硬性强制要求：
+1. 禁止输出任何解释、前言、总结、markdown、注释。
+2. 禁止```json代码块标记。
+3. 只输出纯JSON数组，除此之外一个字都不要写。
+4. 如果没有发现任何问题，直接返回空数组：[]
+5. 文件路径全部使用【正斜杠 /】，不要使用Windows反斜杠 \，防止JSON转义错误。
+6. evidence字段中，**所有代码片段内的单引号 ' 不要加反斜杠转义**，禁止出现 \'。JSON只允许对双引号"进行转义。

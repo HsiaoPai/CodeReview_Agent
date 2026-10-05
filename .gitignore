@@ -1,0 +1,27 @@
+# 虚拟环境
+.venv/
+venv/
+
+# 本地密钥
+.env
+
+# python缓存
+__pycache__/
+*.pyc
+*.pyo
+
+# pytest缓存
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+
+# 输出报告
+*.md.out
+*.log
+
+# 自动生成的报告文件，保留项目自带的README、Design
+*.md
+!README.md
+!Design.md
